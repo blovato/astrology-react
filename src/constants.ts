@@ -131,18 +131,18 @@ export type SignKey = keyof typeof SIGNS;
 export type Sign = (typeof SIGNS)[SignKey];
 
 export const SIGNS_DRAW_ORDER = [
-  SIGNS.pisces.key,
-  SIGNS.aquarius.key,
-  SIGNS.capricorn.key,
-  SIGNS.sagittarius.key,
-  SIGNS.scorpio.key,
-  SIGNS.libra.key,
-  SIGNS.virgo.key,
-  SIGNS.leo.key,
-  SIGNS.cancer.key,
-  SIGNS.gemini.key,
-  SIGNS.taurus.key,
   SIGNS.aries.key,
+  SIGNS.taurus.key,
+  SIGNS.gemini.key,
+  SIGNS.cancer.key,
+  SIGNS.leo.key,
+  SIGNS.virgo.key,
+  SIGNS.libra.key,
+  SIGNS.scorpio.key,
+  SIGNS.sagittarius.key,
+  SIGNS.capricorn.key,
+  SIGNS.aquarius.key,
+  SIGNS.pisces.key,
 ];
 
 export const PALETTE = {

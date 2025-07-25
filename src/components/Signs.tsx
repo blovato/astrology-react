@@ -16,13 +16,12 @@ export const Signs: React.FC<SignsProps> = ({
   fill = 'none',
   stroke = 'none',
 }) => {
-  const radius = (diameter / 2) - 60;
+  const radius = (diameter / 2) - 30;
   return (
     <g>
       {SIGNS_DRAW_ORDER.map((signKey, index) => {
         const sign = SIGNS[signKey];
         const currentDegree = index * 30
-        console.log(currentDegree, sign.key)
         return (
           <>
             <ArcSegment

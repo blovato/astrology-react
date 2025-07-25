@@ -1,23 +1,22 @@
 import React from 'react';
-import { PlanetKey, SignKey, PLANETS } from '../constants';
+import { PlanetKey, SignKey, PLANETS, PALETTE } from '../constants';
 import { Point } from './Point';
 
 interface PlanetProps {
   diameter: number;
   planetKey: PlanetKey;
-  degree: { abs: number; rel: number };
-  signKey: SignKey;
+  absDegree: number;
 }
 
 export const Planet: React.FC<PlanetProps> = ({
   diameter,
   planetKey,
-  degree,
-  signKey,
+  absDegree,
 }) => {
   return (
-    <Point radius={20 - (diameter / 2)} degree={degree.abs}>
-      <text textAnchor="middle" fontSize={14} fill="#222">
+    <Point radius={diameter / 2 - 60} degree={absDegree}>
+      <circle r={10} fill={PALETTE.sky} />
+      <text transform="translate(0, 5)" textAnchor="middle" fontSize={14} fill="#222">
         {PLANETS[planetKey].symbol}
       </text>
     </Point>

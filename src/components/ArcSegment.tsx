@@ -1,5 +1,5 @@
 import React, { SVGProps } from 'react';
-import { toRadians } from '../helpers'
+import { polarToCartesian, toRadians } from '../helpers'
 
 type ArcSegmentProps = {
   radius: number;
@@ -15,29 +15,22 @@ export const ArcSegment: React.FC<ArcSegmentProps> = ({
   endDegree,
   ...svgPathProps
 }) => {
-  const startRad = toRadians(startDegree);
-  const endRad = toRadians(endDegree);
-
-  const outerStartX = Math.cos(startRad) * radius;
-  const outerStartY = Math.sin(startRad) * radius;
-  const outerEndX = Math.cos(endRad) * radius;
-  const outerEndY = Math.sin(endRad) * radius;
-
+  const { x: outerStartX, y: outerStartY } = polarToCartesian(radius, startDegree);
+  const { x: outerEndX, y: outerEndY } = polarToCartesian(radius, endDegree);
   const innerRadius = radius - thickness;
-  const innerStartX = Math.cos(endRad) * innerRadius;
-  const innerStartY = Math.sin(endRad) * innerRadius;
-  const innerEndX = Math.cos(startRad) * innerRadius;
-  const innerEndY = Math.sin(startRad) * innerRadius;
-
+  const { x: innerStartX, y: innerStartY } = polarToCartesian(innerRadius, endDegree);
+  const { x: innerEndX, y: innerEndY } = polarToCartesian(innerRadius, startDegree);
   const largeArcFlag = endDegree - startDegree <= 180 ? "0" : "1";
+  const sweepFlagOuter = "0"; // counter-clockwise
+  const sweepFlagInner = "1"; // opposite direction for inner arc
 
   const d = `
-          M ${outerStartX} ${outerStartY}
-          A ${radius} ${radius} 0 ${largeArcFlag} 1 ${outerEndX} ${outerEndY}
-          L ${innerStartX} ${innerStartY}
-          A ${innerRadius} ${innerRadius} 0 ${largeArcFlag} 0 ${innerEndX} ${innerEndY}
-          Z
-        `;
+    M ${outerStartX} ${outerStartY}
+    A ${radius} ${radius} 0 ${largeArcFlag} ${sweepFlagOuter} ${outerEndX} ${outerEndY}
+    L ${innerStartX} ${innerStartY}
+    A ${innerRadius} ${innerRadius} 0 ${largeArcFlag} ${sweepFlagInner} ${innerEndX} ${innerEndY}
+    Z
+  `;
 
   return <path d={d}  {...svgPathProps} />;
 }; 

@@ -7,16 +7,66 @@ import { Signs } from '../src/components/Signs';
 
 const mockChartData: NatalChartData = {
   planets: [
-    { planetKey: PLANETS.sun.key, degree: { abs: 280, rel: 10 }, signKey: SIGNS.pisces.key, house: 1 },
-    { planetKey: PLANETS.moon.key, degree: { abs: 82, rel: 22 }, signKey: SIGNS.taurus.key, house: 5 },
-    { planetKey: PLANETS.mercury.key, degree: { abs: 305, rel: 5 }, signKey: SIGNS.aquarius.key, house: 2 },
-    { planetKey: PLANETS.venus.key, degree: { abs: 345, rel: 15 }, signKey: SIGNS.pisces.key, house: 3 },
-    { planetKey: PLANETS.mars.key, degree: { abs: 28, rel: 28 }, signKey: SIGNS.aries.key, house: 4 },
-    { planetKey: PLANETS.jupiter.key, degree: { abs: 123, rel: 3 }, signKey: SIGNS.leo.key, house: 7 },
-    { planetKey: PLANETS.saturn.key, degree: { abs: 169, rel: 19 }, signKey: SIGNS.virgo.key, house: 8 },
-    { planetKey: PLANETS.uranus.key, degree: { abs: 217, rel: 7 }, signKey: SIGNS.scorpio.key, house: 9 },
-    { planetKey: PLANETS.neptune.key, degree: { abs: 252, rel: 12 }, signKey: SIGNS.sagittarius.key, house: 10 },
-    { planetKey: PLANETS.pluto.key, degree: { abs: 205, rel: 25 }, signKey: SIGNS.libra.key, house: 11 },
+    {
+      planetKey: PLANETS.sun.key,
+      degree: { abs: 354.8833, rel: 24.8833 },
+      signKey: SIGNS.pisces.key,
+      house: 11,
+    },
+    {
+      planetKey: PLANETS.moon.key,
+      degree: { abs: 32.3667, rel: 2.3667 },
+      signKey: SIGNS.taurus.key,
+      house: 12,
+    },
+    {
+      planetKey: PLANETS.mercury.key,
+      degree: { abs: 327.4667, rel: 27.4667 },
+      signKey: SIGNS.aquarius.key,
+      house: 10,
+    },
+    {
+      planetKey: PLANETS.venus.key,
+      degree: { abs: 8.85, rel: 8.85 },
+      signKey: SIGNS.aries.key,
+      house: 11,
+    },
+    {
+      planetKey: PLANETS.mars.key,
+      degree: { abs: 336.4833, rel: 6.4833 },
+      signKey: SIGNS.pisces.key,
+      house: 11,
+    },
+    {
+      planetKey: PLANETS.saturn.key,
+      degree: { abs: 335.4833, rel: 5.4833 },
+      signKey: SIGNS.pisces.key,
+      house: 11,
+    },
+    {
+      planetKey: PLANETS.jupiter.key,
+      degree: { abs: 224.2833, rel: 14.2833 },
+      signKey: SIGNS.scorpio.key,
+      house: 6,
+    },
+    {
+      planetKey: PLANETS.uranus.key,
+      degree: { abs: 295.4667, rel: 25.4667 },
+      signKey: SIGNS.capricorn.key,
+      house: 9,
+    },
+    {
+      planetKey: PLANETS.neptune.key,
+      degree: { abs: 292.8833, rel: 22.8833 },
+      signKey: SIGNS.capricorn.key,
+      house: 9,
+    },
+    {
+      planetKey: PLANETS.pluto.key,
+      degree: { abs: 238, rel: 28 },
+      signKey: SIGNS.scorpio.key,
+      house: 7,
+    },
   ],
 };
 
@@ -34,8 +84,7 @@ export const Default: Story = {
         <Planet
           diameter={args.diameter || 600}
           planetKey={planet.planetKey}
-          degree={planet.degree}
-          signKey={planet.signKey}
+          absDegree={planet.degree.abs}
         />
       ))}
       <Signs diameter={args.diameter || 600} stroke={PALETTE.ocean} />
