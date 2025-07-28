@@ -1,20 +1,25 @@
 import React from 'react';
 import { ArcSegment } from './ArcSegment';
-import { ELEMENTS, PALETTE, SIGNS, SIGNS_DRAW_ORDER } from '../constants';
+import { PALETTE, SIGNS, SIGNS_DRAW_ORDER } from '../constants';
 import { Point } from './Point';
+import { renderSignSymbol } from './icons';
 
 interface SignsProps {
   diameter: number;
   thickness?: number;
   fill?: string;
   stroke?: string;
+  strokeWidth?: number;
 }
+
+
 
 export const Signs: React.FC<SignsProps> = ({
   diameter,
-  thickness = 20,
+  thickness = 30,
   fill = 'none',
   stroke = 'none',
+  strokeWidth = 'none',
 }) => {
   const radius = (diameter / 2) - 30;
   return (
@@ -23,7 +28,7 @@ export const Signs: React.FC<SignsProps> = ({
         const sign = SIGNS[signKey];
         const currentDegree = index * 30
         return (
-          <>
+          <g key={sign.key}>
             <ArcSegment
               id={sign.key}
               radius={radius}
@@ -32,13 +37,12 @@ export const Signs: React.FC<SignsProps> = ({
               endDegree={currentDegree + 30}
               fill={fill}
               stroke={stroke}
+              strokeWidth={strokeWidth}
             />
-            <Point radius={radius - 10} degree={currentDegree + 15}>
-              <text transform="translate(0, 4)" textAnchor="middle" fontSize={10} fill="#222">
-                {sign.symbol}
-              </text>
+            <Point radius={radius - 15} degree={currentDegree + 15}>
+              {renderSignSymbol(sign.key)({ width: 24, height: 24, transform: `translate(-12, -12)`, fill: stroke })}
             </Point>
-          </>
+          </g>
         )
       })}
     </g >

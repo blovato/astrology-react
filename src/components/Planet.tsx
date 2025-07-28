@@ -1,24 +1,33 @@
 import React from 'react';
-import { PlanetKey, SignKey, PLANETS, PALETTE } from '../constants';
+import { PLANETS, PALETTE } from '../constants';
 import { Point } from './Point';
+import { PlanetPosition } from '../types';
+import { Line } from './Line';
 
-interface PlanetProps {
+interface PlanetProps extends PlanetPosition {
   diameter: number;
-  planetKey: PlanetKey;
-  absDegree: number;
 }
 
 export const Planet: React.FC<PlanetProps> = ({
   diameter,
   planetKey,
-  absDegree,
+  degree,
+  ring = 0,
 }) => {
+  const radius = ((diameter / 2) - 90) - (ring * 30);
   return (
-    <Point radius={diameter / 2 - 60} degree={absDegree}>
-      <circle r={10} fill={PALETTE.sky} />
-      <text transform="translate(0, 5)" textAnchor="middle" fontSize={14} fill="#222">
-        {PLANETS[planetKey].symbol}
-      </text>
-    </Point>
+    <g>
+      <Line
+        degree={degree.abs}
+        fromRadius={radius + 10}
+        toRadius={(diameter / 2) - 40 /* TODO: consider refs to signs arc edge */}
+        stroke={PALETTE.mutedPlum}
+      />
+      <Point radius={radius} degree={degree.abs}>
+        <text transform="translate(0, 2)" textAnchor="middle" dominantBaseline="middle" fill={PALETTE.mutedPlum} fontSize={32}>
+          {PLANETS[planetKey].symbol}
+        </text>
+      </Point>
+    </g>
   );
 };

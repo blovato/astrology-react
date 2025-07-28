@@ -146,20 +146,12 @@ export const SIGNS_DRAW_ORDER = [
 ];
 
 export const PALETTE = {
-  macaroni: "#e1b670",      // warm yellow-orange #e1b670
-  caramel: "#b96925",       // rich caramel brown #b96925
-  cocoa: "#68392e",         // deep cocoa brown #68392e
-  espresso: "#201300",      // very dark brown #201300
-  olive: "#404e21",         // olive green #404e21
-  jade: "#45944f",          // jade green #45944f
-  mint: "#77d3b2",          // mint green #77d3b2
-  sky: "#96bfff",           // sky blue #96bfff
-  ocean: "#038ac2",         // ocean blue #038ac2
-  teal: "#01515e",          // deep teal #01515e
-  midnight: "#001437",      // midnight blue #001437
-  plum: "#503e66",          // plum purple #503e66
-  orchid: "#a762a9",        // orchid purple #a762a9
-  blush: "#efa3c8",         // blush pink #efa3c8
-  white: "#ffffff",         // pure white #ffffff
-  black: "#000000",         // pure black #000000
+  white: "#ffffff",            // #ffffff
+  black: "#000000",            // #000000
+  navyBlue: "#203c56",         // #203c56
+  deepPurple: "#544e68",       // #544e68
+  mutedPlum: "#8d697a",        // #8d697a
+  orange: "#ffaa5e",     // #ffaa5e
+  paleYellow: "#ffd4a3",       // #ffd4a3
+  cream: "#ffecd6",  // #ffecd6
 } as const;
